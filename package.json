@@ -1,0 +1,23 @@
+{
+  "name": "homework_webuiauto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha webUIAutoTest --timeout 10000",
+    "report-mochawesome": "mocha webUIAutoTest --timeout 10000 --reporter mochawesome",
+    "report-simple-html": "mocha webUIAutoTest --timeout 10000 --reporter mocha-simple-html-reporter --reporter-options output=report/report.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "selenium-webdriver": "^4.51.0"
+  },
+  "devDependencies": {
+    "mocha": "^12.0.3",
+    "mocha-simple-html-reporter": "^2.0.0",
+    "mochawesome": "^8.1.1"
+  }
+}

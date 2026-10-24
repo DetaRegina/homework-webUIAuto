@@ -1,0 +1,180 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-10-24T16:41:26.895Z",
+    "end": "2026-10-24T16:41:32.477Z",
+    "duration": 5582,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aa231206-f7cd-4fff-87ae-6c7e550dc171",
+      "title": "",
+      "fullFile": "C:\\QA Course Digiskola\\homework_webUIAuto\\webUIAutoTest\\login.js",
+      "file": "\\webUIAutoTest\\login.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+          "title": "Login",
+          "fullFile": "C:\\QA Course Digiskola\\homework_webUIAuto\\webUIAutoTest\\login.js",
+          "file": "\\webUIAutoTest\\login.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Login\"",
+              "fullTitle": "Login \"before all\" hook in \"Login\"",
+              "timedOut": false,
+              "duration": 2877,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Handle pop up message Google\n        const options = new firefox.Options();\n        // options.addArguments(\"--headless\"); \n    \n        driver = await new Builder()\n   .forBrowser(\"firefox\")\n   .setFirefoxOptions(options)\n   .build();\n   await driver.get(\"https://belajar-bareng.onrender.com/\");",
+              "err": {},
+              "uuid": "3a779c22-4f7a-4164-8102-b1f19a30488b",
+              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Login\"",
+              "fullTitle": "Login \"after all\" hook in \"Login\"",
+              "timedOut": false,
+              "duration": 907,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if(driver){\n    await driver.quit(); //reopen web\n}\nconsole.log(\"Driver close\");",
+              "err": {},
+              "uuid": "3eee766d-559b-451d-b8bc-e42d1b0c3bd0",
+              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook in \"Login\"",
+              "fullTitle": "Login \"after each\" hook in \"Login\"",
+              "timedOut": false,
+              "duration": 3,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.manage().deleteAllCookies(); // delete cookies\nconsole.log(\"Test Complete\");",
+              "err": {},
+              "uuid": "939377b6-1af9-4f24-9feb-fb70179dc5f6",
+              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Successfully Login with username and password",
+              "fullTitle": "Login Successfully Login with username and password",
+              "timedOut": false,
+              "duration": 380,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(50000);\nlet usernameInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='username-input']\")\n);\nlet passwordInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='password-input']\")\n);\nlet loginButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='login-button']\")\n);\nawait usernameInput.sendKeys(\"admin\");\nawait passwordInput.sendKeys(\"admin\");\nawait loginButton.click();\nthis.timeout(3000);\n// Assertion 1 : Redirect to /users\nawait driver.wait(until.urlContains(\"/users\"), 10000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl.includes(\"/users\"), true);",
+              "err": {},
+              "uuid": "a24d560a-a5db-457b-b930-bf9c2b761d2f",
+              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Successfully Add User with Username",
+              "fullTitle": "Login Successfully Add User with Username",
+              "timedOut": false,
+              "duration": 1388,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "let addButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='add-button']\")\n);\nawait addButton.click();\n// Assertion 1 : Redirect to /add\nawait driver.wait(until.urlContains(\"/add\"), 10000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl.includes(\"/add\"), true);\n// Assertion 2 : Successfully add new user\nlet usernameInput2 = await driver.findElement(\n    By.xpath(\"//form//input[@data-testid='username-input']\")\n);\nlet ageInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='age-input']\")\n);\nlet submitButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='submit-button']\")\n);\nlet uniqueName = \"Deta \" + Date.now();\nawait usernameInput2.sendKeys(uniqueName);\nawait ageInput.sendKeys(\"22\");\nawait submitButton.click();\nlet successMessage = await driver.wait(\n    until.elementLocated(                    \n        By.xpath(\"//*[@data-testid='toast-item-success-added']\")\n    ),\n    1000\n)\n    \nassert.strictEqual(\n    await successMessage.isDisplayed(),\n    true            \n)\nthis.timeout(3000);",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(xpath, //*[@data-testid='toast-item-success-added'])\nWait timed out after 1085ms",
+                "estack": "TimeoutError: Waiting for element to be located By(xpath, //*[@data-testid='toast-item-success-added'])\nWait timed out after 1085ms\n    at C:\\QA Course Digiskola\\homework_webUIAuto\\node_modules\\selenium-webdriver\\lib\\webdriver.js:939:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+                "diff": null
+              },
+              "uuid": "e35bdc4f-f43d-414c-854d-de92d2bb8e8c",
+              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a24d560a-a5db-457b-b930-bf9c2b761d2f"
+          ],
+          "failures": [
+            "e35bdc4f-f43d-414c-854d-de92d2bb8e8c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1768,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "12.0.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.1.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
