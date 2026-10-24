@@ -2,13 +2,13 @@ const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 
-describe("Login", function () {
+describe("Login & Add User Test Case", function () {
     let driver;
 
     before(async function(){
          //Handle pop up message Google
         const options = new firefox.Options();
-        // options.addArguments("--headless"); 
+        options.addArguments("--headless"); 
     
         driver = await new Builder()
             .forBrowser("firefox")
@@ -76,7 +76,7 @@ describe("Login", function () {
             By.xpath("//*[@data-testid='submit-button']")
         );
 
-        let uniqueName = "Deta " + Date.now();
+        let uniqueName = "Deta" + Math.random().toString(36).replace(/[^a-z]/g, '').slice(0, 5);
         await usernameInput2.sendKeys(uniqueName);
         await ageInput.sendKeys("22");
         await submitButton.click();
@@ -87,11 +87,12 @@ describe("Login", function () {
             ),
             1000
         )
+
+        await driver.wait(until.elementIsVisible(successMessage), 10000);
             
         assert.strictEqual(
             await successMessage.isDisplayed(),
             true            
         )
-        this.timeout(3000);
     })
 })

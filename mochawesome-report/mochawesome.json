@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 2,
-    "passes": 1,
+    "passes": 2,
     "pending": 0,
-    "failures": 1,
-    "start": "2026-10-24T16:41:26.895Z",
-    "end": "2026-10-24T16:41:32.477Z",
-    "duration": 5582,
+    "failures": 0,
+    "start": "2026-10-24T17:00:09.595Z",
+    "end": "2026-10-24T17:00:14.956Z",
+    "duration": 5361,
     "testsRegistered": 2,
-    "passPercent": 50,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "aa231206-f7cd-4fff-87ae-6c7e550dc171",
+      "uuid": "6ac431fb-0a12-4807-9079-9f6f489ca493",
       "title": "",
       "fullFile": "C:\\QA Course Digiskola\\homework_webUIAuto\\webUIAutoTest\\login.js",
       "file": "\\webUIAutoTest\\login.js",
@@ -27,36 +27,36 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "32660fb7-f595-4f2a-88fe-f0ee15817384",
-          "title": "Login",
+          "uuid": "4082d1e1-626a-46aa-bbee-49cdfa376628",
+          "title": "Login & Add User Test Case",
           "fullFile": "C:\\QA Course Digiskola\\homework_webUIAuto\\webUIAutoTest\\login.js",
           "file": "\\webUIAutoTest\\login.js",
           "beforeHooks": [
             {
-              "title": "\"before all\" hook in \"Login\"",
-              "fullTitle": "Login \"before all\" hook in \"Login\"",
+              "title": "\"before all\" hook in \"Login & Add User Test Case\"",
+              "fullTitle": "Login & Add User Test Case \"before all\" hook in \"Login & Add User Test Case\"",
               "timedOut": false,
-              "duration": 2877,
+              "duration": 3195,
               "state": null,
               "speed": null,
               "pass": false,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "//Handle pop up message Google\n        const options = new firefox.Options();\n        // options.addArguments(\"--headless\"); \n    \n        driver = await new Builder()\n   .forBrowser(\"firefox\")\n   .setFirefoxOptions(options)\n   .build();\n   await driver.get(\"https://belajar-bareng.onrender.com/\");",
+              "code": "//Handle pop up message Google\n        const options = new firefox.Options();\n        options.addArguments(\"--headless\"); \n    \n        driver = await new Builder()\n   .forBrowser(\"firefox\")\n   .setFirefoxOptions(options)\n   .build();\n   await driver.get(\"https://belajar-bareng.onrender.com/\");",
               "err": {},
-              "uuid": "3a779c22-4f7a-4164-8102-b1f19a30488b",
-              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "uuid": "817e3533-e861-4d51-855d-8e730c2c7294",
+              "parentUUID": "4082d1e1-626a-46aa-bbee-49cdfa376628",
               "isHook": true,
               "skipped": false
             }
           ],
           "afterHooks": [
             {
-              "title": "\"after all\" hook in \"Login\"",
-              "fullTitle": "Login \"after all\" hook in \"Login\"",
+              "title": "\"after all\" hook in \"Login & Add User Test Case\"",
+              "fullTitle": "Login & Add User Test Case \"after all\" hook in \"Login & Add User Test Case\"",
               "timedOut": false,
-              "duration": 907,
+              "duration": 579,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,14 +65,14 @@
               "context": null,
               "code": "if(driver){\n    await driver.quit(); //reopen web\n}\nconsole.log(\"Driver close\");",
               "err": {},
-              "uuid": "3eee766d-559b-451d-b8bc-e42d1b0c3bd0",
-              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "uuid": "cc66e89b-6796-412d-a336-10742962282a",
+              "parentUUID": "4082d1e1-626a-46aa-bbee-49cdfa376628",
               "isHook": true,
               "skipped": false
             },
             {
-              "title": "\"after each\" hook in \"Login\"",
-              "fullTitle": "Login \"after each\" hook in \"Login\"",
+              "title": "\"after each\" hook in \"Login & Add User Test Case\"",
+              "fullTitle": "Login & Add User Test Case \"after each\" hook in \"Login & Add User Test Case\"",
               "timedOut": false,
               "duration": 3,
               "state": null,
@@ -83,8 +83,8 @@
               "context": null,
               "code": "await driver.manage().deleteAllCookies(); // delete cookies\nconsole.log(\"Test Complete\");",
               "err": {},
-              "uuid": "939377b6-1af9-4f24-9feb-fb70179dc5f6",
-              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "uuid": "85b92a8e-033c-4d1c-a065-bb7015756c6b",
+              "parentUUID": "4082d1e1-626a-46aa-bbee-49cdfa376628",
               "isHook": true,
               "skipped": false
             }
@@ -92,9 +92,9 @@
           "tests": [
             {
               "title": "Successfully Login with username and password",
-              "fullTitle": "Login Successfully Login with username and password",
+              "fullTitle": "Login & Add User Test Case Successfully Login with username and password",
               "timedOut": false,
-              "duration": 380,
+              "duration": 337,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -103,44 +103,39 @@
               "context": null,
               "code": "this.timeout(50000);\nlet usernameInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='username-input']\")\n);\nlet passwordInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='password-input']\")\n);\nlet loginButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='login-button']\")\n);\nawait usernameInput.sendKeys(\"admin\");\nawait passwordInput.sendKeys(\"admin\");\nawait loginButton.click();\nthis.timeout(3000);\n// Assertion 1 : Redirect to /users\nawait driver.wait(until.urlContains(\"/users\"), 10000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl.includes(\"/users\"), true);",
               "err": {},
-              "uuid": "a24d560a-a5db-457b-b930-bf9c2b761d2f",
-              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "uuid": "a95cc21a-f3c4-4848-8c5d-9e79b762a0ab",
+              "parentUUID": "4082d1e1-626a-46aa-bbee-49cdfa376628",
               "isHook": false,
               "skipped": false
             },
             {
               "title": "Successfully Add User with Username",
-              "fullTitle": "Login Successfully Add User with Username",
+              "fullTitle": "Login & Add User Test Case Successfully Add User with Username",
               "timedOut": false,
-              "duration": 1388,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 1236,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "let addButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='add-button']\")\n);\nawait addButton.click();\n// Assertion 1 : Redirect to /add\nawait driver.wait(until.urlContains(\"/add\"), 10000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl.includes(\"/add\"), true);\n// Assertion 2 : Successfully add new user\nlet usernameInput2 = await driver.findElement(\n    By.xpath(\"//form//input[@data-testid='username-input']\")\n);\nlet ageInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='age-input']\")\n);\nlet submitButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='submit-button']\")\n);\nlet uniqueName = \"Deta \" + Date.now();\nawait usernameInput2.sendKeys(uniqueName);\nawait ageInput.sendKeys(\"22\");\nawait submitButton.click();\nlet successMessage = await driver.wait(\n    until.elementLocated(                    \n        By.xpath(\"//*[@data-testid='toast-item-success-added']\")\n    ),\n    1000\n)\n    \nassert.strictEqual(\n    await successMessage.isDisplayed(),\n    true            \n)\nthis.timeout(3000);",
-              "err": {
-                "message": "TimeoutError: Waiting for element to be located By(xpath, //*[@data-testid='toast-item-success-added'])\nWait timed out after 1085ms",
-                "estack": "TimeoutError: Waiting for element to be located By(xpath, //*[@data-testid='toast-item-success-added'])\nWait timed out after 1085ms\n    at C:\\QA Course Digiskola\\homework_webUIAuto\\node_modules\\selenium-webdriver\\lib\\webdriver.js:939:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
-                "diff": null
-              },
-              "uuid": "e35bdc4f-f43d-414c-854d-de92d2bb8e8c",
-              "parentUUID": "32660fb7-f595-4f2a-88fe-f0ee15817384",
+              "code": "let addButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='add-button']\")\n);\nawait addButton.click();\n// Assertion 1 : Redirect to /add\nawait driver.wait(until.urlContains(\"/add\"), 10000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.strictEqual(currentUrl.includes(\"/add\"), true);\n// Assertion 2 : Successfully add new user\nlet usernameInput2 = await driver.findElement(\n    By.xpath(\"//form//input[@data-testid='username-input']\")\n);\nlet ageInput = await driver.findElement(\n    By.xpath(\"//*[@data-testid='age-input']\")\n);\nlet submitButton = await driver.findElement(\n    By.xpath(\"//*[@data-testid='submit-button']\")\n);\nlet uniqueName = \"Deta\" + Math.random().toString(36).replace(/[^a-z]/g, '').slice(0, 5);\nawait usernameInput2.sendKeys(uniqueName);\nawait ageInput.sendKeys(\"22\");\nawait submitButton.click();\nlet successMessage = await driver.wait(\n    until.elementLocated(                    \n        By.xpath(\"//*[@data-testid='toast-item-success-added']\")\n    ),\n    1000\n)\nawait driver.wait(until.elementIsVisible(successMessage), 10000);\n    \nassert.strictEqual(\n    await successMessage.isDisplayed(),\n    true            \n)",
+              "err": {},
+              "uuid": "ebff54e9-bbf9-42b1-a3f2-273980312eed",
+              "parentUUID": "4082d1e1-626a-46aa-bbee-49cdfa376628",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "a24d560a-a5db-457b-b930-bf9c2b761d2f"
+            "a95cc21a-f3c4-4848-8c5d-9e79b762a0ab",
+            "ebff54e9-bbf9-42b1-a3f2-273980312eed"
           ],
-          "failures": [
-            "e35bdc4f-f43d-414c-854d-de92d2bb8e8c"
-          ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 1768,
+          "duration": 1573,
           "root": false,
           "rootEmpty": false,
           "_timeout": 10000
