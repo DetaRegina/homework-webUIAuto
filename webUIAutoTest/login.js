@@ -2,19 +2,23 @@ const { Builder, By, until } = require("selenium-webdriver");
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 
-describe("Login & Add User Test Case", function () {
+describe("Login Test Case", function () {
     let driver;
 
     before(async function(){
          //Handle pop up message Google
         const options = new firefox.Options();
-        options.addArguments("--headless"); 
+        // options.addArguments("--headless"); 
     
         driver = await new Builder()
             .forBrowser("firefox")
             .setFirefoxOptions(options)
             .build();
-            await driver.get("https://belajar-bareng.onrender.com/");
+            
+    })
+
+    beforeEach(async function () {
+            driver.get("https://belajar-bareng.onrender.com/");
     })
 
     afterEach (async function (){
@@ -54,45 +58,39 @@ describe("Login & Add User Test Case", function () {
         assert.strictEqual(currentUrl.includes("/users"), true);
     })
 
-    it("Successfully Add User with Username", async function () {
-        let addButton = await driver.findElement(
-            By.xpath("//*[@data-testid='add-button']")
+    it("Login validation: wrong password", async function () {
+        this.timeout(50000);
+        let usernameInput = await driver.findElement(
+            By.xpath("//*[@data-testid='username-input']")
         );
-        await addButton.click();
-
-        // Assertion 1 : Redirect to /add
-        await driver.wait(until.urlContains("/add"), 10000);
-        let currentUrl = await driver.getCurrentUrl();
-        assert.strictEqual(currentUrl.includes("/add"), true);
-
-        // Assertion 2 : Successfully add new user
-        let usernameInput2 = await driver.findElement(
-            By.xpath("//form//input[@data-testid='username-input']")
+        let passwordInput = await driver.findElement(
+            By.xpath("//*[@data-testid='password-input']")
         );
-        let ageInput = await driver.findElement(
-            By.xpath("//*[@data-testid='age-input']")
-        );
-        let submitButton = await driver.findElement(
-            By.xpath("//*[@data-testid='submit-button']")
+        let loginButton = await driver.findElement(
+            By.xpath("//*[@data-testid='login-button']")
         );
 
-        let uniqueName = "Deta" + Math.random().toString(36).replace(/[^a-z]/g, '').slice(0, 5);
-        await usernameInput2.sendKeys(uniqueName);
-        await ageInput.sendKeys("22");
-        await submitButton.click();
+        await usernameInput.sendKeys("admin");
+        await passwordInput.sendKeys("testwrongpassword");
+        await loginButton.click();
 
-        let successMessage = await driver.wait(
+        // Assertion : login failed
+       let currentUrl = await driver.getCurrentUrl();
+        assert.strictEqual(currentUrl.includes("/users"), false);
+
+        let errorMessage = await driver.wait(
             until.elementLocated(                    
-                By.xpath("//*[@data-testid='toast-item-success-added']")
+                By.xpath("//*[@data-testid='toast-item-error-login']")
             ),
             1000
         )
 
-        await driver.wait(until.elementIsVisible(successMessage), 10000);
+        await driver.wait(until.elementIsVisible(errorMessage), 10000);
             
         assert.strictEqual(
-            await successMessage.isDisplayed(),
+            await errorMessage.isDisplayed(),
             true            
         )
     })
+
 })
