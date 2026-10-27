@@ -16,8 +16,6 @@ describe("Add User Test Case", function () {
             .setFirefoxOptions(options)
             .build();
         await driver.get("https://belajar-bareng.onrender.com/");
-            
-        this.timeout(50000);
 
         let usernameInput = await driver.findElement(
             By.xpath("//*[@data-testid='username-input']")
